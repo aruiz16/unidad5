@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"      
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <h:head>
+        <title>#{str.venFormTitle}</title>
+    </h:head>
+
+    <h:body>
+        <ui:composition template="/templates/template.xhtml">
+            <ui:define name="contenido">
+                <h2>#{str.venFormHeader}</h2>
+                <p:fieldset legend="#{str.venLegendForm}">
+                    <b:form>
+                        <b:panelGrid columns="1">
+                            
+                            <b:selectOneMenu value="#{saleBean.sale.client.idClient}">
+                                <f:selectItems value="#{saleBean.clients}" var="c" 
+                                               itemLabel="#{c.nameClient}" itemValue="#{c.idClient}"></f:selectItems>                                     
+                            </b:selectOneMenu>   
+                            <b:selectOneMenu value="#{saleBean.sale.product.idProduct}">
+                                <f:selectItems value="#{saleBean.products}" var="p" 
+                                               itemLabel="#{p.productName}" itemValue="#{p.idProduct}"></f:selectItems>                                     
+                            </b:selectOneMenu>  
+                            <b:selectOneMenu value="#{saleBean.sale.employee.idEmployee}">
+                                <f:selectItems value="#{saleBean.employees}" var="e" 
+                                               itemLabel="#{e.nameEmployee}" itemValue="#{e.idEmployee}"></f:selectItems>                                     
+                            </b:selectOneMenu>  
+                            <b:inputText placeholder="#{str.venMonPrompt}" 
+                                         value="#{saleBean.sale.price}" ></b:inputText>
+                            
+                            <b:inputText placeholder="#{str.venDesPrompt}" 
+                                         value="#{saleBean.sale.description}" ></b:inputText>
+                            
+                                          
+                        </b:panelGrid>
+                        <b:commandButton value="#{str.buttonSave}" action="#{saleBean.save()}"></b:commandButton>
+                        <b:commandButton value="#{str.buttonDelete}" action="#{saleBean.delete()}"></b:commandButton>
+                        <b:commandButton value="#{str.buttonCancel}" action="#{saleBean.cancel()}"></b:commandButton>
+                    </b:form>
+                </p:fieldset>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"      
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>#{str.empFormTitle}</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/templates/template.xhtml">
+            <ui:define name="contenido">
+                <h2>#{str.empFormHeader}</h2>
+                <p:fieldset legend="#{str.empLegendForm}">
+                    <h:form>
+                        <p:selectOneMenu value="#{empresaBean.empresa.certificacion.idCertificacion}">
+                            <f:selectItems value="#{empresaBean.certificaciones}" var="c" 
+                                           itemLabel="#{c.nomCertificacion}" itemValue="#{c.idCertificacion}"></f:selectItems>                                     
+                        </p:selectOneMenu>  
+                        <p:inputText placeholder="#{str.empNamePrompt}" value="#{empresaBean.empresa.nomEmpresa}"></p:inputText>
+                        <p:inputText placeholder="#{str.empNumEmpPrompt}" value="#{empresaBean.empresa.numEmpleados}"></p:inputText>
+                        <p:inputText placeholder="#{str.empEstPrompt}" value="#{empresaBean.empresa.estado}"></p:inputText>
+                        <p:inputText placeholder="#{str.empDomPrompt}" value="#{empresaBean.empresa.domicilio}"></p:inputText>
+                        <p:commandButton value="#{str.buttonSave}" action="#{empresaBean.guardar()}"></p:commandButton>
+                        <p:commandButton value="#{str.buttonDelete}" action="#{empresaBean.eliminar()}"></p:commandButton>
+                        <p:commandButton value="#{str.buttonCancel}" action="#{empresaBean.cancelar()}"></p:commandButton>
+                    </h:form>
+                </p:fieldset>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

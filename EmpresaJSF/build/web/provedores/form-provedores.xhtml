@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"      
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>#{str.proFormTitle}</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/templates/template.xhtml">
+            <ui:define name="contenido">
+                <h2>#{str.proFormHeader}</h2>
+                <p:fieldset legend="#{str.proLegendForm}">
+                    <h:form>
+                        <p:inputText placeholder="#{str.proNamePrompt}" value="#{provedorBean.provedor.nomProvedor}"></p:inputText>
+                        <p:inputText placeholder="#{str.proCiuPrompt}" value="#{provedorBean.provedor.ciudad}"></p:inputText>
+                        <p:selectOneMenu value="#{provedorBean.provedor.empresa.idEmpresa}">
+                            <f:selectItems value="#{provedorBean.empresas}" var="e" 
+                                           itemLabel="#{e.nomEmpresa}" itemValue="#{e.idEmpresa}"></f:selectItems>                                     
+                        </p:selectOneMenu>  
+                        <p:commandButton value="#{str.buttonSave}" action="#{provedorBean.guardar()}"></p:commandButton>
+                        <p:commandButton value="#{str.buttonDelete}" action="#{provedorBean.eliminar()}"></p:commandButton>
+                        <p:commandButton value="#{str.buttonCancel}" action="#{provedorBean.cancelar()}"></p:commandButton>
+                    </h:form>
+                </p:fieldset>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

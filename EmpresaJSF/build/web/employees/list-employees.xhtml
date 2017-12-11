@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"      
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui">
+
+        <h:head>
+             <title>#{str.traListTitle}</title>
+        </h:head>
+
+        <h:body>
+            <ui:composition template="/templates/template.xhtml">
+                <ui:define name="contenido">
+                    <h1>#{str.traListTitle}</h1>
+                    <b:form>
+                        <p:commandButton value="#{str.buttonAdd}" action="#{employeeBean.start()}"></p:commandButton>
+                    </b:form>
+                    <b:dataTable value="#{employeeBean.employees}" var="e">
+                        <b:dataTableColumn label="#{str.action}">
+                            <b:form>
+                                <p:commandButton value="#{str.buttonEdit}" action="#{employeeBean.edit(e)}"></p:commandButton>
+                            </b:form>
+                        </b:dataTableColumn>
+                        <b:dataTableColumn label="#{str.traEmpHeader}">
+                            <p:outputLabel value="#{e.company.nameCompany}"></p:outputLabel>
+                        </b:dataTableColumn>
+                        <b:dataTableColumn label="#{str.traNameHeader}">
+                            <p:outputLabel value="#{e.nameEmployee}"></p:outputLabel>
+                        </b:dataTableColumn>
+                        <b:dataTableColumn label="#{str.traApePHeader}">
+                            <p:outputLabel value="#{e.lastname}"></p:outputLabel>
+                        </b:dataTableColumn>
+                        <b:dataTableColumn label="#{str.traEdadHeader}">
+                            <p:outputLabel value="#{e.age}"></p:outputLabel>
+                        </b:dataTableColumn>
+                    </b:dataTable>
+                </ui:define>
+            </ui:composition>
+        </h:body>
+</html>

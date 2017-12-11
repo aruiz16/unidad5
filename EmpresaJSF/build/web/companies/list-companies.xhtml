@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"      
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui">
+
+        <h:head>
+             <title>#{str.empListTitle}</title>
+        </h:head>
+
+        <h:body>
+            <ui:composition template="/templates/template.xhtml">
+                <ui:define name="contenido">
+                    <h1>#{str.empListTitle}</h1>
+                    <b:form>
+                        <b:commandButton value="#{str.buttonAdd}" action="#{companyBean.start()}"></b:commandButton>
+                    </b:form>
+                    <b:dataTable value="#{companyBean.companies}" var="c">
+                        <b:dataTableColumn label="#{str.action}">
+                            <b:form>
+                                <b:commandButton value="#{str.buttonEdit}" action="#{companyBean.edit(c)}"></b:commandButton>
+                            </b:form>
+                        </b:dataTableColumn>
+                        <b:dataTableColumn label="#{str.cerEmpHeader}">
+                            <p:outputLabel value="#{c.certification.nameCertification}"></p:outputLabel>
+                        </b:dataTableColumn>
+                        <b:dataTableColumn label="#{str.empNomEmpHeader}">
+                            <p:outputLabel value="#{c.nameCompany}"></p:outputLabel>
+                        </b:dataTableColumn>
+                        <b:dataTableColumn label="#{str.empNumEmpHeader}">
+                            <p:outputLabel value="#{c.employeesNum}"></p:outputLabel>
+                        </b:dataTableColumn>
+                        <b:dataTableColumn label="#{str.empEstHeader}">
+                            <p:outputLabel value="#{c.state}"></p:outputLabel>
+                        </b:dataTableColumn>
+                        <b:dataTableColumn label="#{str.empDomHeader}">
+                            <p:outputLabel value="#{c.home}"></p:outputLabel>
+                        </b:dataTableColumn>
+                    </b:dataTable>
+                </ui:define>
+            </ui:composition>
+        </h:body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"      
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>#{str.traFormTitle}</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/templates/template.xhtml">
+            <ui:define name="contenido">
+                <h2>#{str.traFormHeader}</h2>
+                <p:fieldset legend="#{str.traLegendForm}">
+                    <h:form>
+                        <p:inputText placeholder="#{str.traNamePrompt}" value="#{trabajadorBean.trabajador.nomTrabajador}"></p:inputText>
+                        <p:inputText placeholder="#{str.traApePPrompt}" value="#{trabajadorBean.trabajador.apePatTra}"></p:inputText>
+                        <p:inputText placeholder="#{str.traApeMPrompt}" value="#{trabajadorBean.trabajador.apeMatTra}"></p:inputText>
+                        <p:inputText placeholder="#{str.traEdadPrompt}" value="#{trabajadorBean.trabajador.edad}"></p:inputText>
+                        <p:selectOneMenu value="#{trabajadorBean.trabajador.empresa.idEmpresa}">
+                            <f:selectItems value="#{trabajadorBean.empresas}" var="e" 
+                                           itemLabel="#{e.nomEmpresa}" itemValue="#{e.idEmpresa}"></f:selectItems>                                     
+                        </p:selectOneMenu>  
+                        <p:commandButton value="#{str.buttonSave}" action="#{trabajadorBean.guardar()}"></p:commandButton>
+                        <p:commandButton value="#{str.buttonDelete}" action="#{trabajadorBean.eliminar()}"></p:commandButton>
+                        <p:commandButton value="#{str.buttonCancel}" action="#{trabajadorBean.cancelar()}"></p:commandButton>
+                    </h:form>
+                </p:fieldset>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

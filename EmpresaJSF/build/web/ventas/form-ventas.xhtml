@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"      
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title>#{str.venFormTitle}</title>
+    </h:head>
+
+    <h:body>
+        <ui:composition template="/templates/template.xhtml">
+            <ui:define name="contenido">
+                <h2>#{str.venFormHeader}</h2>
+                <p:fieldset legend="#{str.venLegendForm}">
+                    <h:form>
+                        <h:panelGrid columns="1">
+                            
+                            <p:selectOneMenu value="#{ventaBean.venta.cliente.idCliente}">
+                                <f:selectItems value="#{ventaBean.clientes}" var="c" 
+                                               itemLabel="#{c.nomCliente}" itemValue="#{c.idCliente}"></f:selectItems>                                     
+                            </p:selectOneMenu>   
+                            <p:selectOneMenu value="#{ventaBean.venta.producto.idProducto}">
+                                <f:selectItems value="#{ventaBean.productos}" var="p" 
+                                               itemLabel="#{p.nomProducto}" itemValue="#{p.idProducto}"></f:selectItems>                                     
+                            </p:selectOneMenu>  
+                            <p:selectOneMenu value="#{ventaBean.venta.trabajador.idTrabajador}">
+                                <f:selectItems value="#{ventaBean.trabajadores}" var="t" 
+                                               itemLabel="#{t.nomTrabajador}" itemValue="#{t.idTrabajador}"></f:selectItems>                                     
+                            </p:selectOneMenu>  
+                            <p:inputText placeholder="#{str.venMonPrompt}" 
+                                         value="#{ventaBean.venta.monto}" ></p:inputText>
+                            
+                            <p:inputText placeholder="#{str.venDesPrompt}" 
+                                         value="#{ventaBean.venta.descripcion}" ></p:inputText>
+                            
+                                          
+                        </h:panelGrid>
+                        <p:commandButton value="#{str.buttonSave}" action="#{ventaBean.guardar()}"></p:commandButton>
+                        <p:commandButton value="#{str.buttonDelete}" action="#{ventaBean.eliminar()}"></p:commandButton>
+                        <p:commandButton value="#{str.buttonCancel}" action="#{ventaBean.cancelar()}"></p:commandButton>
+                    </h:form>
+                </p:fieldset>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

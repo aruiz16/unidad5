@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"      
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui">
+
+        <h:head>
+             <title>#{str.moduleListTitle}</title>
+        </h:head>
+
+        <h:body>
+            <ui:composition template="/templates/template.xhtml">
+                <ui:define name="contenido">
+                    <h1>#{str.moduleListTitle}</h1>
+                    <b:form>
+                        <b:commandButton value="#{str.buttonAdd}" action="#{moduleBean.start()}"></b:commandButton>
+                    </b:form>
+                    <b:dataTable value="#{moduleBean.modules}" var="m">
+                        <b:dataTableColumn label="#{str.action}">
+                            <b:form>
+                                <b:commandButton value="#{str.buttonEdit}" action="#{moduleBean.edit(m)}"></b:commandButton>
+                            </b:form>
+                        </b:dataTableColumn>
+                        <b:dataTableColumn label="#{str.moduleNameHeader}">
+                            <p:outputLabel value="#{m.nameModule}"></p:outputLabel>
+                        </b:dataTableColumn>
+                        <b:dataTableColumn label="#{str.modulePathHeader}">
+                            <p:outputLabel value="#{m.path}"></p:outputLabel>
+                        </b:dataTableColumn>
+                    </b:dataTable>
+                </ui:define>
+            </ui:composition>
+        </h:body>
+</html>

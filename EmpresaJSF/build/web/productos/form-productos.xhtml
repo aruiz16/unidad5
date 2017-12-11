@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"      
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>#{str.prodFormTitle}</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/templates/template.xhtml">
+            <ui:define name="contenido">
+                <h2>#{str.prodFormHeader}</h2>
+                <p:fieldset legend="#{str.prodLegendForm}">
+                    <h:form>
+                        <p:inputText placeholder="#{str.prodNamePrompt}" value="#{productoBean.producto.nomProducto}"></p:inputText>
+                        <p:inputText placeholder="#{str.prodNumProdPrompt}" value="#{productoBean.producto.numProducto}"></p:inputText>
+                        <p:selectOneMenu value="#{productoBean.producto.provedor.idProvedor}">
+                            <f:selectItems value="#{productoBean.provedores}" var="p" 
+                                           itemLabel="#{p.nomProvedor}" itemValue="#{p.idProvedor}"></f:selectItems>                                     
+                        </p:selectOneMenu>
+                        <p:commandButton value="#{str.buttonSave}" action="#{productoBean.guardar()}"></p:commandButton>
+                        <p:commandButton value="#{str.buttonDelete}" action="#{productoBean.eliminar()}"></p:commandButton>
+                        <p:commandButton value="#{str.buttonCancel}" action="#{productoBean.cancelar()}"></p:commandButton>
+                    </h:form>
+                </p:fieldset>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

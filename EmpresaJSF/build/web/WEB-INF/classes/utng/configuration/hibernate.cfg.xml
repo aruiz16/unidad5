@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+    <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+    <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/bd_empresa2</property>
+    <property name="hibernate.connection.username">alets</property>
+    <property name="hibernate.connection.password">123</property>
+    <property name="hibernate.show_sql">true</property>
+    <property name="hibernate.connection.pool_size">1</property>
+    <property name="hibernate.hbm2ddl.auto">update</property>
+    <mapping class="utng.model.User"/>
+    <mapping class="utng.model.Role"/>
+    <mapping class="utng.model.Module"/>
+    <mapping class="utng.model.Certification"/>
+    <mapping class="utng.model.Company"/>
+    <mapping class="utng.model.Employee"/>
+    <mapping class="utng.model.Sale"/>
+    <mapping class="utng.model.Client"/>
+    <mapping class="utng.model.Product"/>
+    <mapping class="utng.model.Provider"/>
+  </session-factory>
+</hibernate-configuration>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"      
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui">
+    <h:head>
+        <title>#{str.cliFormTitle}</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/templates/template.xhtml">
+            <ui:define name="contenido">
+                <h2>#{str.cliFormHeader}</h2>
+                <p:fieldset legend="#{str.cliLegendForm}">
+                    <b:form>
+                        <b:panelGrid columns="1">
+                        <b:inputText placeholder="#{str.clientNamePrompt}" value="#{clientBean.client.nameClient}"></b:inputText>
+                        <b:inputText placeholder="#{str.clientApePPrompt}" value="#{clientBean.client.lastname}"></b:inputText>
+                        <b:inputText placeholder="#{str.clientEdadPrompt}" value="#{clientBean.client.age}"></b:inputText>
+                        <b:commandButton value="#{str.buttonSave}" action="#{clientBean.save()}"></b:commandButton>
+                        <b:commandButton value="#{str.buttonDelete}" action="#{clientBean.delete()}"></b:commandButton>
+                        <b:commandButton value="#{str.buttonCancel}" action="#{clientBean.cancel()}"></b:commandButton>
+                        </b:panelGrid>
+                    </b:form>
+                </p:fieldset>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

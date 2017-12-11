@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"      
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui">
+    <h:head>
+        <title>#{str.traFormTitle}</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/templates/template.xhtml">
+            <ui:define name="contenido">
+                <h2>#{str.traFormHeader}</h2>
+                <p:fieldset legend="#{str.traLegendForm}">
+                    <b:form>
+                        <b:panelGrid columns="1">
+                        <b:inputText placeholder="#{str.traNamePrompt}" value="#{employeeBean.employee.nameEmployee}"></b:inputText>
+                        <b:inputText placeholder="#{str.traApePPrompt}" value="#{employeeBean.employee.lastname}"></b:inputText>
+                        <b:inputText placeholder="#{str.traEdadPrompt}" value="#{employeeBean.employee.age}"></b:inputText>
+                        <b:selectOneMenu value="#{employeeBean.employee.company.idCompany}">
+                            <f:selectItems value="#{employeeBean.companies}" var="c" 
+                                           itemLabel="#{c.nameCompany}" itemValue="#{c.idCompany}"></f:selectItems>                                     
+                        </b:selectOneMenu>  
+                        <b:commandButton value="#{str.buttonSave}" action="#{employeeBean.save()}"></b:commandButton>
+                        <b:commandButton value="#{str.buttonDelete}" action="#{employeeBean.delete()}"></b:commandButton>
+                        <b:commandButton value="#{str.buttonCancel}" action="#{employeeBean.cancel()}"></b:commandButton>
+                        </b:panelGrid>
+                    </b:form>
+                </p:fieldset>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

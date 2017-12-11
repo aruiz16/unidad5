@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"      
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui">
+
+        <h:head>
+             <title>#{str.prodListTitle}</title>
+        </h:head>
+
+        <h:body>
+            <ui:composition template="/templates/template.xhtml">
+                <ui:define name="contenido">
+                    <h1>#{str.prodListTitle}</h1>
+                    <b:form>
+                        <b:commandButton value="#{str.buttonAdd}" action="#{productBean.start()}"></b:commandButton>
+                    </b:form>
+                    <b:dataTable value="#{productBean.products}" var="p">
+                        <b:dataTableColumn label="#{str.action}">
+                            <b:form>
+                                <b:commandButton value="#{str.buttonEdit}" action="#{productBean.edit(p)}"></b:commandButton>
+                            </b:form>
+                        </b:dataTableColumn>
+                        <b:dataTableColumn label="#{str.prodIdHeader}">
+                            <p:outputLabel value="#{p.idProduct}"></p:outputLabel>
+                        </b:dataTableColumn>
+                        <b:dataTableColumn label="#{str.prodNameHeader}">
+                            <p:outputLabel value="#{p.productName}"></p:outputLabel>
+                        </b:dataTableColumn>
+                        <b:dataTableColumn label="#{str.prodNumProHeader}">
+                            <p:outputLabel value="#{p.productNum}"></p:outputLabel>
+                        </b:dataTableColumn>
+                        <b:dataTableColumn label="#{str.prodProHeader}">
+                            <p:outputLabel value="#{p.provider.providerName}"></p:outputLabel>
+                        </b:dataTableColumn>
+                    </b:dataTable>
+                </ui:define>
+            </ui:composition>
+        </h:body>
+</html>

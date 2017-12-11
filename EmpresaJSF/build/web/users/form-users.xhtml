@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"      
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui">
+
+    <h:head>
+        <title>#{str.formTitle}</title>
+    </h:head>
+
+    <h:body>
+        <ui:composition template="/templates/template.xhtml">
+            <ui:define name="contenido">
+                <h2>#{str.formHeader}</h2>
+                <p:fieldset legend="#{str.legendForm}">
+                    <b:form>
+                        <b:panelGrid columns="1">
+                            <b:inputText placeholder="#{str.namePrompt}" 
+                                         value="#{userBean.user.username}"></b:inputText>
+                            <b:inputText placeholder="#{str.passwordPrompt}" 
+                                         value="#{userBean.user.password}" type="password"></b:inputText>
+                                         <b:selectOneMenu value="#{userBean.user.role.idRole}">
+                                             <f:selectItems value="#{userBean.roles}" var="r" 
+                                                            itemLabel="#{r.name}" itemValue="#{r.idRole}"></f:selectItems>                                     
+                            </b:selectOneMenu>                                 
+                        </b:panelGrid>
+                        <b:commandButton value="#{str.buttonSave}" action="#{userBean.save()}"></b:commandButton>
+                        <b:commandButton value="#{str.buttonDelete}" action="#{userBean.delete()}"></b:commandButton>
+                        <b:commandButton value="#{str.buttonCancel}" action="#{userBean.cancel()}"></b:commandButton>
+                    </b:form>
+                </p:fieldset>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

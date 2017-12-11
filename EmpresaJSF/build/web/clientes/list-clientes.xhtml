@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"      
+      xmlns:p="http://primefaces.org/ui">
+
+        <h:head>
+             <title>#{str.cliListTitle}</title>
+        </h:head>
+
+        <h:body>
+            <ui:composition template="/templates/template.xhtml">
+                <ui:define name="contenido">
+                    <h1>#{str.cliListTitle}</h1>
+                    <h:form>
+                        <p:commandButton value="#{str.buttonAdd}" action="#{clienteBean.iniciar()}"></p:commandButton>
+                    </h:form>
+                    <p:dataTable value="#{clienteBean.clientes}" var="c">
+                        <p:column headerText="#{str.action}">
+                            <h:form>
+                                <p:commandButton value="#{str.buttonEdit}" action="#{clienteBean.editar(c)}"></p:commandButton>
+                            </h:form>
+                        </p:column>
+                        <p:column headerText="#{str.clienteNameHeader}">
+                            <p:outputLabel value="#{c.nomCliente}"></p:outputLabel>
+                        </p:column>
+                        <p:column headerText="#{str.clienteApePHeader}">
+                            <p:outputLabel value="#{c.apePatCli}"></p:outputLabel>
+                        </p:column>
+                        <p:column headerText="#{str.clienteApeMHeader}">
+                            <p:outputLabel value="#{c.apeMatCli}"></p:outputLabel>
+                        </p:column>
+                        <p:column headerText="#{str.clienteEdadHeader}">
+                            <p:outputLabel value="#{c.edad}"></p:outputLabel>
+                        </p:column>
+                    </p:dataTable>
+                </ui:define>
+            </ui:composition>
+        </h:body>
+</html>
